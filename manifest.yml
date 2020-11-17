@@ -1,0 +1,4 @@
+applications:
+- name: samhangmanpython
+  random-route: true
+  command: python webhangman.py

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+   <body>
+   
+      <h1>eHangman.com</h1>
+      <pre>
+{{ hangman }}
+
+           
+{{ guessed }}
+      </pre>
+
+      {% if state == 'playing' %}
+      <form action = "/hangman/" method = "post"> 
+
+         <p>Your guess? <input type="text" autofocus="autofocus" name ="guess" id="guess"></p>
+         <p><input type = "hidden" name = "lettersguessed" value = "{{ lettersguessed }}"</p>
+         <p><input type = "hidden" name = "word" value = "{{ word }}"</p>
+         <p><input type = "Submit" value = "Go"></p>
+
+      </form>
+      {% endif %}
+
+     <form action="/hangman/newgame">
+         <input type="submit" value="Start a new game"/>
+     </form>
+
+   </body>
+</html>
