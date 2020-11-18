@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web-hangman
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hangman-svc
+  namespace: web-hangman
+  labels:
+    app: hangman
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: hangman
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhangman
+  namespace: web-hangman
+  labels:
+    app: hangman
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hangman
+  template:
+    metadata:
+      labels:
+        app: hangman
+    spec:
+      containers:
+      - name: hangman
+        image: sammoseley/webhangman:v1.0
+        ports:
+        - containerPort: 80
